@@ -1,4 +1,4 @@
 coś coś
 cos
 coś
-(../assets/sleep-banana.jpg)
+(ideal-system/assets/sleep-banana.jpg)
