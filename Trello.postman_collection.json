@@ -14,7 +14,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Weryfikacja kodu odpowiedzi\", function() {\r",
+							"pm.test(\"Status code is 200\", function() {\r",
 							"    pm.response.to.have.status(200)\r",
 							"})"
 						],
@@ -73,7 +73,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl-1.0}}/members/me/boards?Key={{Key}}&token={{Token}}&name=Jola",
+					"raw": "{{baseUrl-1.0}}/members/me/boards?Key={{Key}}&token={{Token}}&name=Testowa tablica 3",
 					"host": [
 						"{{baseUrl-1.0}}"
 					],
@@ -93,7 +93,7 @@
 						},
 						{
 							"key": "name",
-							"value": "Jola"
+							"value": "Testowa tablica 3"
 						}
 					]
 				}
@@ -124,7 +124,7 @@
 							"})\r",
 							"\r",
 							"\r",
-							"pm.test(\"Weryfikacja tytuł\", function(){\r",
+							"pm.test(\"Title verification\", function(){\r",
 							"    pm.expect(resBody.name).eql(pm.collectionVariables.get(\"BoardTitle\"))\r",
 							"})\r",
 							"\r",
@@ -432,114 +432,6 @@
 							"    pm.expect(resBody.id).eql(pm.collectionVariables.get(\"boardID\"))\r",
 							"})\r",
 							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "oauth1",
-					"oauth1": [
-						{
-							"key": "tokenSecret",
-							"value": "ATTA1f9dc8d09e2e037f8014fdc622a4fea2c24967d6463f70c2dbcb5bde43bfe8fc7D2C4034",
-							"type": "string"
-						},
-						{
-							"key": "token",
-							"value": "ATTA1f9dc8d09e2e037f8014fdc622a4fea2c24967d6463f70c2dbcb5bde43bfe8fc7D2C4034",
-							"type": "string"
-						},
-						{
-							"key": "consumerKey",
-							"value": "15407244659226e8640600b652bda25e",
-							"type": "string"
-						},
-						{
-							"key": "signatureMethod",
-							"value": "HMAC-SHA1",
-							"type": "string"
-						},
-						{
-							"key": "consumerSecret",
-							"value": "bd223a9439177c39d9d7e48fb0ebeb01e21b7eacb0de9873da53068c73b6004f",
-							"type": "string"
-						},
-						{
-							"key": "version",
-							"value": "1.0",
-							"type": "string"
-						},
-						{
-							"key": "addParamsToHeader",
-							"value": false,
-							"type": "boolean"
-						},
-						{
-							"key": "addEmptyParamsToSign",
-							"value": false,
-							"type": "boolean"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl-1.0}}/boards/{{boardID}}?Key={{Key}}&token={{Token}}",
-					"host": [
-						"{{baseUrl-1.0}}"
-					],
-					"path": [
-						"boards",
-						"{{boardID}}"
-					],
-					"query": [
-						{
-							"key": "Key",
-							"value": "{{Key}}"
-						},
-						{
-							"key": "token",
-							"value": "{{Token}}"
-						},
-						{
-							"key": "name",
-							"value": "Testowa tablica 3",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "check if board del succes Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"// Test oczekuje statusu 404. Jeśli Trello zwróci 404, ten test ZALICZY.\r",
-							"pm.test(\"Status 404 - Resource not found\", function() {\r",
-							"    pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"// WERYFIKACJA KONTEKSTU: Czy na pewno pytaliśmy o nasze usunięte ID?\r",
-							"pm.test(\"Weryfikacja URL - upewnienie się, że szukaliśmy właściwego ID\", function() {\r",
-							"    var deletedID = pm.collectionVariables.get(\"boardID\");\r",
-							"    \r",
-							"    // Sprawdzamy, czy URL, na który wysłaliśmy żądanie, zawiera nasze ID\r",
-							"    pm.expect(pm.request.url.toString()).to.include(deletedID);\r",
-							"});\r",
-							"\r",
-							"// Dodatek: Czy treść błędu to typowy komunikat Trello?\r",
-							"pm.test(\"Komunikat błędu jest poprawny\", function() {\r",
-							"    // Sprawdzamy tekst odpowiedzi, a nie JSON\r",
-							"    pm.expect(pm.response.text()).to.include(\"not found\");\r",
-							"});"
 						],
 						"type": "text/javascript",
 						"packages": {},
